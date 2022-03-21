@@ -3,7 +3,7 @@ import React, {
   FormEvent,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import { v1 as uuid } from "uuid";
 import { Todo } from "../type";
@@ -12,19 +12,19 @@ import "./App.css";
 const todos: Todo[] = [
   {
     id: uuid(),
-    desc: "Learn React",
-    isComplete: true
+    description: "Learn React",
+    isComplete: true,
   },
   {
     id: uuid(),
-    desc: "Learn Redux",
-    isComplete: true
+    description: "Learn Redux",
+    isComplete: true,
   },
   {
     id: uuid(),
-    desc: "Learn Redux-ToolKit",
-    isComplete: false
-  }
+    description: "Learn Redux-ToolKit",
+    isComplete: false,
+  },
 ];
 
 const selectedTodoId = todos[1].id;
@@ -37,7 +37,8 @@ const App = function() {
   const editInput = useRef<HTMLInputElement>(null);
 
   const selectedTodo =
-    (selectedTodoId && todos.find(todo => todo.id === selectedTodoId)) || null;
+    (selectedTodoId && todos.find((todo) => todo.id === selectedTodoId)) ||
+    null;
 
   const handleNewInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewTodoInput(e.target.value);
@@ -56,7 +57,7 @@ const App = function() {
   const handleEdit = (): void => {
     if (!selectedTodo) return;
 
-    setEditTodoInput(selectedTodo.desc);
+    setEditTodoInput(selectedTodo.description);
     setIsEditMode(true);
   };
 
@@ -112,7 +113,7 @@ const App = function() {
               key={todo.id}
               onClick={handleSelectTodo(todo.id)}
             >
-              <span className="list-number">{i + 1})</span> {todo.desc}
+              <span className="list-number">{i + 1})</span> {todo.description}
             </li>
           ))}
         </ul>
@@ -127,7 +128,7 @@ const App = function() {
                   selectedTodo?.isComplete ? "done" : ""
                 }`}
               >
-                {selectedTodo.desc}
+                {selectedTodo.description}
               </span>
               <div className="todo-actions">
                 <button onClick={handleEdit}>Edit</button>
